@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <button onclick="add('add_author')">Add Author</button>
+        <button onclick="add('add_book')">Add Book</button>
+        <br />
+        <hr />
+        <button onclick="result('book_and_author')">book and author</button>
+        <button onclick="result('author_and_books')">author and books</button>
+        <button onclick="result('author_and_books_count')">
+          author and books count
+        </button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const csrftoken = document.querySelector(
+      "[name=csrfmiddlewaretoken]"
+    ).value;
+    console.log("csrftoken : ", csrftoken);
+
+    function result(val) {
+      if (val === "book_and_author") {
+        fetch(`book_and_author/`)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else if (val === "author_and_books") {
+        fetch(`author_and_books/`)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        fetch(`author_and_books_count/`)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+
+    function add(val) {
+      if (val === "add_author") {
+        console.log("add author");
+        fetch(`add_author/`)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("add book");
+        fetch(`add_book/`)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+  </script>
+</html>
